@@ -477,21 +477,23 @@ header.scrolled .logo img {
     line-height: 1.6;
 }
 
-/* Nova grid de serviços */
+/* Nova grid de serviços - Modificada para layout vertical */
 .new-services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 30px;
+    width: 100%;
 }
 
-/* Cards expandidos para os serviços */
+/* Cards expandidos para os serviços - Ajustado para ocupar toda a largura */
 .expanded-card {
     display: flex;
     flex-direction: column;
-    min-height: 400px;
+    min-height: 250px; /* Reduzido para melhor fluxo vertical */
+    width: 100%;
 }
 
-/* Service Card */
+/* Service Card - Ajustado para largura total */
 .service-card {
     position: relative;
     overflow: hidden;
@@ -504,6 +506,7 @@ header.scrolled .logo img {
     transition: all 0.6s;
     opacity: 0;
     transform: translateY(30px);
+    width: 100%;
 }
 
 .service-card::before {
