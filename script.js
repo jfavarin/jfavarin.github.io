@@ -1,5 +1,6 @@
 // Menu Mobile Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Menu mobile toggle - Mantido pois o toggle está no HTML
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -7,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.toggle('active');
     });
     
-    // Header scroll effect
+    // Header scroll effect - Mantido pois é usado no CSS (.scrolled)
     const header = document.querySelector('header');
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Configuração do Particles.js
+    // Configuração do Particles.js - Mantido pois é chamado no HTML
     particlesJS('particles-js', {
         "particles": {
             "number": {
@@ -77,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "retina_detect": true
     });
 
-    // Configuração do Typed.js
+    // Configuração do Typed.js - Mantido pois é chamado no HTML
     var typed = new Typed('.typing-text', {
         strings: ['construção civil', 'engenharia', 'arquitetura', 'infraestrutura'],
         typeSpeed: 100,
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.2
     };
 
-    // Observer para textos na seção About
+    // Observer para textos na seção About - Mantido pois as classes são usadas no CSS
     const aboutTextObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -111,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         aboutTextObserver.observe(paragraph);
     });
 
-    // Observer para cards de serviços
+    // Observer para cards de serviços - Mantido pois as classes são usadas no CSS
     const serviceCardsObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observer para itens de lista dentro dos cards de serviço
+    // Observer para itens de lista dentro dos cards de serviço - Mantido pois são usadas no CSS
     const serviceListObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -148,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         serviceCardsObserver.observe(card);
     });
 
-    // Observer para elementos de contato
+    // Observer para elementos de contato - Mantido pois as classes são usadas no CSS
     const contactObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -165,31 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactDetails) contactObserver.observe(contactDetails);
     if (socialLinks) contactObserver.observe(socialLinks);
 
-    // Adicionar efeitos de hover nos títulos de seção
-    const sectionTitles = document.querySelectorAll('.section-title h2');
-    sectionTitles.forEach(title => {
-        title.addEventListener('mouseover', function() {
-            this.style.textShadow = `0 0 10px rgba(0, 227, 150, 0.5)`;
-        });
-        
-        title.addEventListener('mouseout', function() {
-            this.style.textShadow = 'none';
-        });
-    });
-
-    // Efeito de teclas digitando ao passar mouse sobre botões
-    const buttons = document.querySelectorAll('.cta-button, .secondary-button');
-    buttons.forEach(button => {
-        button.addEventListener('mouseover', function() {
-            this.style.letterSpacing = '1px';
-        });
-        
-        button.addEventListener('mouseout', function() {
-            this.style.letterSpacing = 'normal';
-        });
-    });
-
-    // Efeito de pulso no rodapé
+    // Efeito de pulso no rodapé - Mantido pois é aplicado ao footer
     const footer = document.querySelector('footer');
     if (footer) {
         window.addEventListener('scroll', function() {
