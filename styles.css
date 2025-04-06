@@ -27,7 +27,7 @@ body {
     padding: 0 20px;
 }
 
-/* Cabeçalho - Melhorado */
+/* Cabeçalho */
 header {
     padding: 20px 0;
     position: fixed;
@@ -104,7 +104,7 @@ header.scrolled .logo img {
     font-size: 24px;
 }
 
-/* Hero Section - Melhorada */
+/* Hero Section */
 .hero {
     height: 100vh;
     display: flex;
@@ -286,7 +286,7 @@ header.scrolled .logo img {
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 }
 
-/* Animações de Fade In melhoradas */
+/* Animações de Fade In */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -312,14 +312,13 @@ header.scrolled .logo img {
     }
 }
 
-/* Sobre - Melhorado */
+/* Sobre */
 .about {
     padding: 100px 0;
     position: relative;
     overflow: hidden;
 }
 
-/* Efeito de grade similar ao Hero, mas mais sutil */
 .about::before {
     content: '';
     position: absolute;
@@ -335,7 +334,6 @@ header.scrolled .logo img {
     z-index: 1;
 }
 
-/* Linhas diagonais de decoração */
 .about::after {
     content: '';
     position: absolute;
@@ -407,7 +405,6 @@ header.scrolled .logo img {
     position: relative;
 }
 
-/* Efeito de borda luminosa */
 .about-image::before {
     content: '';
     position: absolute;
@@ -419,14 +416,6 @@ header.scrolled .logo img {
     opacity: 0.3;
     z-index: -1;
     animation: borderPulse 3s infinite;
-}
-
-
-@keyframes horizontalScanner {
-    0% { top: 0; }
-    50% { top: 100%; }
-    50.001% { top: 100%; }
-    100% { top: 0; }
 }
 
 @keyframes borderPulse {
@@ -441,19 +430,7 @@ header.scrolled .logo img {
     display: block;
 }
 
-/* Animação de reveal nos parágrafos quando visíveis */
-.reveal-animation {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s;
-}
-
-.reveal-animation.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Serviços - Melhorado */
+/* Serviços */
 .services {
     padding: 100px 0;
     background-color: rgba(0, 227, 150, 0.05);
@@ -461,7 +438,6 @@ header.scrolled .logo img {
     overflow: hidden;
 }
 
-/* Efeito de fundo digital */
 .services::before {
     content: '';
     position: absolute;
@@ -476,7 +452,6 @@ header.scrolled .logo img {
     z-index: 0;
 }
 
-/* Efeito de linhas digitais no fundo */
 .services::after {
     content: '';
     position: absolute;
@@ -489,13 +464,34 @@ header.scrolled .logo img {
     z-index: 0;
 }
 
-.services-grid {
+/* Introdução dos serviços */
+.services-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.services-intro p {
+    font-size: 1.2rem;
+    color: var(--gray-text);
+    line-height: 1.6;
+}
+
+/* Nova grid de serviços */
+.new-services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
 }
 
-/* Melhorias nos cards de serviço */
+/* Cards expandidos para os serviços */
+.expanded-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+/* Service Card */
 .service-card {
     position: relative;
     overflow: hidden;
@@ -510,7 +506,6 @@ header.scrolled .logo img {
     transform: translateY(30px);
 }
 
-/* Efeito de borda brilhante nos cards */
 .service-card::before {
     content: '';
     position: absolute;
@@ -528,27 +523,21 @@ header.scrolled .logo img {
     transform: translateY(0);
 }
 
-/* Aplicar atrasos diferentes para cada card */
 .services-grid .service-card:nth-child(1) { transition-delay: 0.1s; }
 .services-grid .service-card:nth-child(2) { transition-delay: 0.2s; }
 .services-grid .service-card:nth-child(3) { transition-delay: 0.3s; }
-.services-grid .service-card:nth-child(4) { transition-delay: 0.4s; }
-.services-grid .service-card:nth-child(5) { transition-delay: 0.5s; }
-.services-grid .service-card:nth-child(6) { transition-delay: 0.6s; }
 
 @keyframes borderFlow {
     0% { left: -100%; }
     100% { left: 100%; }
 }
 
-/* Efeito de hover melhorado */
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 227, 150, 0.3);
     border-color: rgba(0, 227, 150, 0.3);
 }
 
-/* Melhorias no ícone */
 .service-icon {
     position: relative;
     transition: all 0.8s ease;
@@ -572,7 +561,6 @@ header.scrolled .logo img {
     color: var(--dark-bg);
 }
 
-/* Efeito de brilho ao redor do ícone */
 .service-icon::after {
     content: '';
     position: absolute;
@@ -596,7 +584,40 @@ header.scrolled .logo img {
     font-weight: 600;
 }
 
-/* Contact - Melhorado */
+/* Lista de recursos nos cards de serviço */
+.service-features {
+    list-style: none;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.service-features li {
+    position: relative;
+    padding: 8px 0 8px 25px;
+    border-bottom: 1px dashed rgba(0, 227, 150, 0.1);
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.4s ease-out;
+}
+
+.service-features li:last-child {
+    border-bottom: none;
+}
+
+.service-features li::before {
+    content: '→';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+
+.service-features li.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Contato */
 .contact {
     padding: 100px 0;
     background-color: rgba(0, 227, 150, 0.05);
@@ -604,7 +625,6 @@ header.scrolled .logo img {
     overflow: hidden;
 }
 
-/* Fundo tech para a seção de contato */
 .contact::before {
     content: '';
     position: absolute;
@@ -618,7 +638,6 @@ header.scrolled .logo img {
     z-index: 0;
 }
 
-/* Decoração tech */
 .contact::after {
     content: '';
     position: absolute;
@@ -652,7 +671,6 @@ header.scrolled .logo img {
     overflow: hidden;
 }
 
-/* Efeito de scanner lateral */
 .contact-info::after {
     content: '';
     position: absolute;
@@ -681,7 +699,6 @@ header.scrolled .logo img {
     color: var(--gray-text);
 }
 
-/* Melhorando os detalhes de contato */
 .contact-details {
     list-style: none;
     margin-bottom: 30px;
@@ -707,19 +724,9 @@ header.scrolled .logo img {
     transform: translateX(0);
 }
 
-/* Aplicar atrasos diferentes para cada item */
 .contact-details li:nth-child(1) { transition-delay: 0.1s; }
 .contact-details li:nth-child(2) { transition-delay: 0.2s; }
-.contact-details li:nth-child(3) { transition-delay: 0.3s; }
 
-.contact-details i {
-    font-size: 24px;
-    margin-right: 15px;
-    color: var(--primary-color);
-    text-shadow: 0 0 5px rgba(0, 227, 150, 0.5);
-}
-
-/* Social Links - Melhorado */
 .social-links {
     display: flex;
     justify-content: center;
@@ -749,11 +756,9 @@ header.scrolled .logo img {
     transform: translateY(0);
 }
 
-/* Aplicar atrasos diferentes para cada ícone social */
 .social-links a:nth-child(1) { transition-delay: 0.1s; }
 .social-links a:nth-child(2) { transition-delay: 0.2s; }
 .social-links a:nth-child(3) { transition-delay: 0.3s; }
-.social-links a:nth-child(4) { transition-delay: 0.4s; }
 
 .social-links a::before {
     content: '';
@@ -779,7 +784,7 @@ header.scrolled .logo img {
     box-shadow: 0 0 15px rgba(0, 227, 150, 0.5);
 }
 
-/* Rodapé - Melhorado */
+/* Rodapé */
 footer {
     position: relative;
     overflow: hidden;
@@ -788,7 +793,6 @@ footer {
     padding: 30px 0;
 }
 
-/* Efeito de grade tech no fundo */
 footer::before {
     content: '';
     position: absolute;
@@ -804,7 +808,6 @@ footer::before {
     z-index: 0;
 }
 
-/* Efeito de escaneamento */
 footer::after {
     content: '';
     position: absolute;
@@ -888,60 +891,6 @@ footer::after {
     width: 100%;
 }
 
-/* Adições para a nova seção de serviços - Adicionar ao final do arquivo CSS */
-
-/* Introdução dos serviços */
-.services-intro {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 40px;
-}
-
-.services-intro p {
-    font-size: 1.2rem;
-    color: var(--gray-text);
-    line-height: 1.6;
-}
-
-/* Nova grid de serviços com menos colunas */
-.new-services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-}
-
-/* Cards expandidos para os novos serviços */
-.expanded-card {
-    display: flex;
-    flex-direction: column;
-    min-height: 400px;
-}
-
-/* Lista de recursos nos cards de serviço */
-.service-features {
-    list-style: none;
-    margin-top: 20px;
-    padding-left: 10px;
-}
-
-.service-features li {
-    position: relative;
-    padding: 8px 0 8px 25px;
-    border-bottom: 1px dashed rgba(0, 227, 150, 0.1);
-}
-
-.service-features li:last-child {
-    border-bottom: none;
-}
-
-.service-features li::before {
-    content: '→';
-    color: var(--primary-color);
-    position: absolute;
-    left: 0;
-    top: 8px;
-}
-
 /* Ajustes para responsividade */
 @media (max-width: 768px) {
     .new-services-grid {
@@ -951,16 +900,4 @@ footer::after {
     .expanded-card {
         min-height: auto;
     }
-}
-
-/* Animação para os itens de lista dos serviços */
-.service-features li {
-    opacity: 0;
-    transform: translateX(-15px);
-    transition: all 0.4s ease-out;
-}
-
-.service-features li.active {
-    opacity: 1;
-    transform: translateX(0);
 }
