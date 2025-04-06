@@ -887,3 +887,80 @@ footer::after {
 .copyright p:hover::after {
     width: 100%;
 }
+
+/* Adições para a nova seção de serviços - Adicionar ao final do arquivo CSS */
+
+/* Introdução dos serviços */
+.services-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.services-intro p {
+    font-size: 1.2rem;
+    color: var(--gray-text);
+    line-height: 1.6;
+}
+
+/* Nova grid de serviços com menos colunas */
+.new-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* Cards expandidos para os novos serviços */
+.expanded-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+/* Lista de recursos nos cards de serviço */
+.service-features {
+    list-style: none;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.service-features li {
+    position: relative;
+    padding: 8px 0 8px 25px;
+    border-bottom: 1px dashed rgba(0, 227, 150, 0.1);
+}
+
+.service-features li:last-child {
+    border-bottom: none;
+}
+
+.service-features li::before {
+    content: '→';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 768px) {
+    .new-services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .expanded-card {
+        min-height: auto;
+    }
+}
+
+/* Animação para os itens de lista dos serviços */
+.service-features li {
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.4s ease-out;
+}
+
+.service-features li.active {
+    opacity: 1;
+    transform: translateX(0);
+}

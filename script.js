@@ -121,6 +121,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
+    // Observer para itens de lista dentro dos cards de serviço
+    const serviceListObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const listItems = entry.target.querySelectorAll('.service-features li');
+                listItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('active');
+                    }, index * 100);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observar todos os cards de serviço expandidos
+    const expandedCards = document.querySelectorAll('.expanded-card');
+    expandedCards.forEach(card => {
+        serviceListObserver.observe(card);
+    });
+
     // Observar todos os cards de serviço
     const serviceCards = document.querySelectorAll('.service-card');
     serviceCards.forEach(card => {
