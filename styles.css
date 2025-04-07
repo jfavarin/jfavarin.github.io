@@ -493,7 +493,7 @@ header.scrolled .logo img {
     width: 100%;
 }
 
-/* Service Card - Ajustado para largura total */
+/* Modificações para os Cards de Serviço */
 .service-card {
     position: relative;
     overflow: hidden;
@@ -507,6 +507,8 @@ header.scrolled .logo img {
     opacity: 0;
     transform: translateY(30px);
     width: 100%;
+    /* Adicionar espaço para texto e imagem */
+    min-height: 280px;
 }
 
 .service-card::before {
@@ -519,6 +521,50 @@ header.scrolled .logo img {
     background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
     animation: borderFlow 4s linear infinite;
     z-index: 1;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 60%; /* Largura da imagem na direita */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right center;
+    opacity: 0.2; /* Imagem suave para não atrapalhar o texto */
+    z-index: -1;
+    transition: all 0.3s ease;
+    /* Gradiente para desvanecer a imagem da direita para a esquerda */
+    mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+/* Imagem específica para cada card */
+.service-card:nth-child(1)::after {
+    background-image: url('images/QAQC.jpg'); /* Substitua por sua imagem de controle de qualidade */
+}
+
+.service-card:nth-child(2)::after {
+    background-image: url('images/Automation.jpg'); /* Substitua por sua imagem de automação */
+}
+
+.service-card:nth-child(3)::after {
+    background-image: url('images/DataAnalytics.jpg'); /* Substitua por sua imagem de análise de dados */
+}
+
+/* Animação ao passar o mouse */
+.service-card:hover::after {
+    opacity: 0.3; /* Aumenta ligeiramente a opacidade ao passar o mouse */
+    width: 65%; /* Aumenta um pouco a largura */
+}
+
+/* Ajustes para o conteúdo textual */
+.service-title, .service-description, .service-features {
+    max-width: 70%; /* Limita o texto para não sobrepor demasiado a imagem */
+    position: relative; /* Garante que o texto fique acima da imagem */
+    z-index: 2;
 }
 
 .service-card.active {
@@ -535,27 +581,31 @@ header.scrolled .logo img {
     100% { left: 100%; }
 }
 
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .service-title, .service-description, .service-features {
+        max-width: 100%; /* Em telas menores, o texto ocupa toda a largura */
+    }
+    
+    .service-card::after {
+        width: 100%;
+        height: 100%;
+        opacity: 0.1; /* Reduz ainda mais a opacidade em telas menores */
+        background-position: center right;
+        mask-image: linear-gradient(to left, rgba(0,0,0,0.7), rgba(0,0,0,0));
+        -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    }
+}
+
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 227, 150, 0.3);
     border-color: rgba(0, 227, 150, 0.3);
 }
 
+/* Removendo a rotação do ícone já que não teremos mais emojis */
 .service-icon {
-    position: relative;
-    transition: all 0.8s ease;
-    border: 1px solid rgba(0, 227, 150, 0.2);
-    box-shadow: 0 0 15px rgba(0, 227, 150, 0.1);
-    width: 60px;
-    height: 60px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-color);
-    font-size: 28px;
-    background-color: rgba(0, 227, 150, 0.1);
-    border-radius: 10px;
+    display: none; /* Escondendo completamente */
 }
 
 .service-card:hover .service-icon {
@@ -564,25 +614,13 @@ header.scrolled .logo img {
     color: var(--dark-bg);
 }
 
-.service-icon::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    border-radius: 15px;
-    border: 1px solid rgba(0, 227, 150, 0.5);
-    opacity: 0;
-    transition: all 0.3s;
-}
-
 .service-card:hover .service-icon::after {
     opacity: 1;
 }
 
 .service-title {
     font-size: 1.5rem;
+    margin-top: 10px;
     margin-bottom: 15px;
     font-weight: 600;
 }
