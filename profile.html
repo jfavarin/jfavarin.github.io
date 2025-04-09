@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Profissional</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <style>
+        /* Estilos específicos para a página de perfil */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .page-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .profile-card {
+            width: 100%;
+            max-width: 380px;
+            background: rgba(18, 18, 18, 0.7);
+            border: 1px solid rgba(0, 227, 150, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 227, 150, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .profile-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            animation: borderFlow 4s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes borderFlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .card-header {
+            position: relative;
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 227, 150, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-photo::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            border: 1px solid var(--primary-color);
+            animation: pulse 2s infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .profile-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 15px 0 5px;
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .profile-description {
+            text-align: center;
+            color: var(--gray-text);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .profile-description::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .contact-box {
+            background: rgba(18, 18, 18, 0.5);
+            border: 1px solid rgba(0, 227, 150, 0.1);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-align: center; 
+        }
+        
+        .contact-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 227, 150, 0.2);
+        }
+        
+        .contact-icon {
+            margin-right: 12px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 227, 150, 0.1);
+            border-radius: 50%;
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+        
+        .contact-text {
+            flex: 1;
+        }
+        
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            margin-bottom: 2px;
+        }
+        
+        .contact-value {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+        
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .social-item {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(18, 18, 18, 0.5);
+            border: 1px solid rgba(0, 227, 150, 0.2);
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .social-item:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 227, 150, 0.3);
+        }
+        
+        .qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0 15px;
+        }
+        
+        .qr-title {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            margin-bottom: 12px;
+        }
+        
+        .qr-code {
+            width: 160px;
+            height: 160px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .card-footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid rgba(0, 227, 150, 0.1);
+            color: var(--gray-text);
+            font-size: 0.8rem;
+        }
+        
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Animações */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fundo com partículas -->
+    <div id="particles-js" class="particles-bg"></div>
+    
+    <!-- Conteúdo da página -->
+    <div class="page-container">
+        <div class="profile-card fade-in">
+            <div class="card-header">
+                <div class="profile-photo">
+                    <img src="images\perfil.jpg" alt="Foto de Perfil">
+                </div>
+                <h1 class="profile-name">Eng. Jonas Favarin</h1>
+                <div class="profile-description">
+                    <p>Sócio-Diretor na SPBIM</p>
+                    <p>Consultor BIM | Engenheiro Civil</p>
+                    <p>MBA/Esalq-USP Gestão de Projetos</p>
+                </div>
+            </div>
+            
+            <div class="card-content">
+                <!-- Box para telefone -->
+                <a href="tel:+5511999998888" class="contact-box">
+                    <div class="contact-icon"><img src="images/whatsapp.png" alt="WhatsApp" style="width: 32px; height: 32px;"></div>
+                    <div class="contact-text">
+                        <div class="contact-value">+55 16 99415-2414</div>
+                    </div>
+                </a>
+                
+                <!-- Box para email -->
+                <a href="mailto:seuemail@exemplo.com" class="contact-box">
+                    <div class="contact-icon"><img src="images/mail.png" alt="Email" style="width: 32px; height: 32px;"></div>
+                    <div class="contact-text">
+                        <div class="contact-value">favarin.jonas@gmail.com</div>
+                    </div>
+                </a>
+<!--                 
+                Box para site
+                <a href="https://seusite.com.br" class="contact-box">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-text">
+                        <div class="contact-label">Website</div>
+                        <div class="contact-value">seusite.com.br</div>
+                    </div>
+                </a>
+-->
+
+                <!-- Botões de redes sociais -->
+                <div class="social-container">
+                    <a href="https://www.instagram.com/jfavarin/" class="social-item">
+                        <img src="images/instagram.png" alt="Instagram" style="width: 24px; height: 24px;">
+                    </a>
+                    <a href="https://www.linkedin.com/in/jonas-favarin-14a993246/" class="social-item">
+                        <img src="images/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;">
+                    </a>
+                    <a href="https://tiktok.com/@seuusuario" class="social-item">
+                        <img src="images/tiktok.png" alt="Tiktok" style="width: 24px; height: 24px;">
+                    </a>
+                </div>
+                
+                <!-- QR Code -->
+                <div class="qr-container">
+                    <div class="qr-title">Escaneie para mais informações</div>
+                    <div class="qr-code">
+                        <img src="images\vcard.png" alt="QR Code">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                © 2025 - Todos os direitos reservados
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Configuração específica do particles.js para esta página
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 40,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#00E396"
+                    },
+                    "shape": {
+                        "type": "circle",
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                    },
+                    "size": {
+                        "value": 2.5,
+                        "random": true,
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00E396",
+                        "opacity": 0.1,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "out_mode": "out",
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                },
+                "retina_detect": true
+            });
+            
+            // Adiciona efeito de animação aos elementos internos do card
+            const elements = document.querySelectorAll('.contact-box, .social-item, .qr-container');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    element.style.transition = 'all 0.5s ease';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 500 + index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
